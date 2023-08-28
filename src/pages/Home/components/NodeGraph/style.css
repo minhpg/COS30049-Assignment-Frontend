@@ -1,0 +1,18 @@
+
+.react-sigma-controls {
+    @apply border-0 h-40 m-2 z-10;
+}
+
+.react-sigma-controls:last-child {
+    @apply !important
+}
+
+.react-sigma-control {
+    @apply block p-0 flex justify-center border-0 !important;
+    color: hsl(var(--bc) / var(--tw-text-opacity, 1)) !important
+}
+
+.react-sigma-control button {
+    @apply rounded-medium bg-transparent flex items-center justify-center w-full  hover:scale-110 transition-all duration-300;
+    cursor: pointer
+}
