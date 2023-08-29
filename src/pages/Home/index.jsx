@@ -31,10 +31,10 @@ const Home = () => {
           <div className="col-span-12">
             <h1 className="text-2xl font-black">Transactions</h1>
           </div>
-          <div className="col-span-12 lg:col-span-8">
+          <div className="col-span-12">
             <CardTable />
           </div>
-          <div className="col-span-12 lg:col-span-4">
+          <div className="col-span-12">
             <CardNFT />
           </div>
           <div className="col-span-12">

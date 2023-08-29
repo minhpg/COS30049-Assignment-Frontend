@@ -1,6 +1,6 @@
 import { makeRequest } from "../api";
 import { mergeResult } from "../utils";
-
+import getTopNFTsResponse from '../data/nft-tops.json'
 const getTopNFTs = async (limit) => {
   const query_all_transactions = `
   MATCH
@@ -8,14 +8,15 @@ const getTopNFTs = async (limit) => {
   WITH nft, count(t) as transaction_count
   RETURN
       {
-        id: ID(nft) ,
+        id: ID(nft),
+        key: ID(nft),
         permanent_link: nft.Permanent_link,
         name: nft.Name,
         image_urls: [nft.Image_url_1, nft.Image_url_2, nft.Image_url_3, nft.Image_url_4],
         transaction_count: transaction_count
       }
     ORDER BY transaction_count DESC
-    LIMIT 10 
+    LIMIT $limit 
   `;
 
   const body = {
@@ -30,14 +31,9 @@ const getTopNFTs = async (limit) => {
   };
 
   const { errors, results } = await makeRequest(body);
+  // const { errors, results } = getTopNFTsResponse
 
-  const results_parsed = [];
-  for (const result of results) {
-    const first_result = mergeResult(result);
-    results_parsed.push(first_result);
-  }
-
-  return results_parsed[0];
+  return results[0].data.map(item => item.row[0]);
 };
 
 export { getTopNFTs };

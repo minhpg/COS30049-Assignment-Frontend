@@ -20,6 +20,7 @@ import { useAsyncList } from "@react-stately/data";
 
 import { useState } from "react";
 import { getTopNFTs } from "../../../../api/models/NFTs";
+import PreviewImage from "../../../../components/PreviewImage";
 
 const CardNFT = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,20 +32,17 @@ const CardNFT = () => {
     },
     {
       key: 2,
-      label: "Market",
+      label: "Name",
     },
     {
       key: 3,
-      label: "Value",
-    },
-    {
-      key: 6,
-      label: "Between",
+      label: "Transaction Count",
     },
   ];
+
   const list = useAsyncList({
     async load({ signal }) {
-      let res = await getTopNFTs(10, { signal });
+      let res = await getTopNFTs(20, { signal });
       setIsLoading(false);
       console.log(res);
       return {
@@ -69,8 +67,6 @@ const CardNFT = () => {
       };
     },
   });
-
-
 
   return (
     <>
@@ -112,8 +108,14 @@ const CardNFT = () => {
               loadingContent={<Spinner />}
             >
               {(item) => (
-                <TableRow key={item.ID}>
-                  
+                <TableRow key={item.id}>
+                  <TableCell>
+                      {item.id}
+                  </TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>
+                    {item.transaction_count}
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
