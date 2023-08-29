@@ -55,7 +55,7 @@ const SearchBar = () => {
                     <ListboxItem key={index} onClick={() => {
                         onOpen()
                     }}>
-                      #asdasd
+                      0xafe7e3264efca320af481af3408d6f348878ec88
                     </ListboxItem>
                   );
                 })}

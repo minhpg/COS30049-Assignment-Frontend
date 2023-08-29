@@ -4,25 +4,27 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu
+  ,DropdownTrigger
 } from "@nextui-org/react";
+
 import Prices from "./Prices";
+
+import Logo from "../Logo";
 
 export default () => {
   const menuItems = [
-    "Profile",
     "Dashboard",
     "Activity",
     "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    "Settings",
+    "Help & Feedback"
   ];
 
   return (
@@ -35,45 +37,17 @@ export default () => {
 
         <NavbarContent className="sm:hidden pr-3" justify="center">
           <NavbarBrand>
-            <p className="font-bold text-inherit">ACME</p>
-          </NavbarBrand>
+            <Logo />
+            </NavbarBrand>
         </NavbarContent>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarBrand>
-            <p className="font-bold text-inherit">ACME</p>
+          <Logo />
+
           </NavbarBrand>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Features
-            </Link>
-          </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="#" aria-current="page" color="warning">
-              Customers
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link color="foreground" href="#">
-              Integrations
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
-
-        <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
-            <Link href="#">Login</Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Button as={Link} color="warning" href="#" variant="flat">
-              Sign Up
-            </Button>
-          </NavbarItem>
-        </NavbarContent>
-
-        <NavbarMenu>
-          {menuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+          {menuItems.slice(0, 4).map((item, index) => (
+            <NavbarItem key={`${item}-${index}`}>
               <Link
                 className="w-full"
                 color={
@@ -83,6 +57,46 @@ export default () => {
                     ? "danger"
                     : "foreground"
                 }
+                href="#"
+                size="lg"
+              >
+                {item}
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <Dropdown>
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  color="default"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Static Actions">
+                <DropdownItem key="edit">Edit profile</DropdownItem>
+                <DropdownItem key="transactions">View transactions</DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  className="text-danger"
+                  color="danger"
+                >
+                  Log out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+        </NavbarContent>
+
+        <NavbarMenu>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                className="w-full"
+                color="foreground"
                 href="#"
                 size="lg"
               >

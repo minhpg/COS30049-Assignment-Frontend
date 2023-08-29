@@ -19,12 +19,9 @@ import {
 import { useAsyncList } from "@react-stately/data";
 
 import { useState } from "react";
-import { getLatestTransactions } from "../../../../api/models/Transactions";
+import { getTopNFTs } from "../../../../api/models/NFTs";
 
-import AddressInfomationModal from "../Modal/AddressInfomationModal";
-import TransactionInformationModal from "../Modal/TransactionInformationModal";
-
-const CardTable = () => {
+const CardNFT = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const cols = [
@@ -47,7 +44,7 @@ const CardTable = () => {
   ];
   const list = useAsyncList({
     async load({ signal }) {
-      let res = await getLatestTransactions(10, { signal });
+      let res = await getTopNFTs(10, { signal });
       setIsLoading(false);
       console.log(res);
       return {
@@ -73,31 +70,13 @@ const CardTable = () => {
     },
   });
 
-  const {
-    isOpen: isOpenAddress,
-    onOpen: onOpenAddress,
-    onOpenChange: onOpenChangeAddress,
-  } = useDisclosure();
 
-  const {
-    isOpen: isOpenTransaction,
-    onOpen: onOpenTransaction,
-    onOpenChange: onOpenChangeTransaction,
-  } = useDisclosure();
 
   return (
     <>
-      <AddressInfomationModal
-        isOpen={isOpenAddress}
-        onOpenChange={onOpenChangeAddress}
-      />
-      <TransactionInformationModal
-        isOpen={isOpenTransaction}
-        onOpenChange={onOpenChangeTransaction}
-      />
       <Card className="w-full">
         <CardHeader className="px-7 pt-6 -mb-2">
-          <h2 className="font-bold text-xl">Recent Transactions</h2>
+          <h2 className="font-bold text-xl">Trending NFTs</h2>
         </CardHeader>
         <CardBody className="px-4 py-0">
           <Table
@@ -134,29 +113,7 @@ const CardTable = () => {
             >
               {(item) => (
                 <TableRow key={item.ID}>
-                  <TableCell>
-                    <a className="hover:underline" onClick={onOpenTransaction}>
-                      {item.ID}
-                    </a>
-                  </TableCell>
-                  <TableCell>{item.Market}</TableCell>
-                  <TableCell>{`${item.Price.toPrecision(3)} ${
-                    item.Crypto
-                  } (${roundDollar(item.USD)})`}</TableCell>
-                  <TableCell>
-                    <p>
-                      <span className="font-bold">From: </span>
-                      <a className="hover:underline" onClick={onOpenAddress}>
-                        {item.Buyer}
-                      </a>
-                    </p>
-                    <p>
-                      <span className="font-bold">To: </span>
-                      <a className="hover:underline" onClick={onOpenAddress}>
-                        {item.Seller}
-                      </a>
-                    </p>
-                  </TableCell>
+                  
                 </TableRow>
               )}
             </TableBody>
@@ -176,4 +133,4 @@ const roundDollar = (num) => {
   return formatter.format(num);
 };
 
-export default CardTable;
+export default CardNFT;

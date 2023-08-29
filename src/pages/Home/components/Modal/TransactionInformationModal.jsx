@@ -101,12 +101,12 @@ const TransacionInformationModal = ({ isOpen, onOpenChange }) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         backdrop="blur"
-        size="lg"
+        size="xl"
         placement="top"
       >
         <ModalContent>
           {(onClose) => (
-            <div className="overflow-y-scroll">
+            <div className="overflow-y-scroll no-scrollbar">
               <ModalHeader className="block">
                 <h3>
                   Transaction #<span>9427137</span>
@@ -135,8 +135,8 @@ const TransacionInformationModal = ({ isOpen, onOpenChange }) => {
                   </TableBody>
                 </Table>
                 <Divider />
-                <div class="">
-                  <h4 class="font-bold">Recent Transactions</h4>
+                <div className="">
+                  <h4 className="font-bold">Recent Transactions</h4>
                 </div>
                 <NFTInformation />
               </ModalBody>

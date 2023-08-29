@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const router = createBrowserRouter([
   {
@@ -16,13 +17,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NextUIProvider theme="dark">
-      <main className="dark text-foreground bg-background font-sans antialiased">
-        <Navbar />
+    <main className={`dark text-foreground bg-background font-sans antialiased`}>
+      <Navbar />
         <RouterProvider router={router} />
-      </main>
+      <Footer />
+    </main>
     </NextUIProvider>
   </React.StrictMode>
 );

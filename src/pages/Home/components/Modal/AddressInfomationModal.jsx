@@ -3,21 +3,22 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
   Divider,
-} from "@nextui-org/react";
-
-import {
   Table,
   TableHeader,
   TableBody,
   TableColumn,
   TableRow,
   TableCell,
-  getKeyValue,
+  Pagination,
+  Spinner,
 } from "@nextui-org/react";
+
+import { useAsyncList } from "@react-stately/data";
+
+import { useState } from "react";
+
+import { getLatestTransactions } from "../../../../api/models/Transactions";
 
 const rows = [
   {
@@ -70,7 +71,7 @@ const AddressInfomationModal = ({ isOpen, onOpenChange }) => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         backdrop="blur"
-        size="lg"
+        size="xl"
         placement="top"
       >
         <ModalContent>
@@ -105,8 +106,8 @@ const AddressInfomationModal = ({ isOpen, onOpenChange }) => {
                   </TableBody>
                 </Table>
                 <Divider />
-                <div class="">
-                  <h4 class="font-bold">Recent Transactions</h4>
+                <div className="">
+                  <h4 className="font-bold">Recent Transactions</h4>
                 </div>
                 <TransactionTable />
               </ModalBody>
@@ -117,16 +118,6 @@ const AddressInfomationModal = ({ isOpen, onOpenChange }) => {
     </>
   );
 };
-
-import {
-  Spinner,
-  Tooltip,
-} from "@nextui-org/react";
-
-import { useAsyncList } from "@react-stately/data";
-
-import { useState } from "react";
-import { getLatestTransactions } from "../../../../api/models/Transactions";
 
 const TransactionTable = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -142,23 +133,11 @@ const TransactionTable = () => {
     },
     {
       key: 3,
-      label: "Crypto",
-    },
-    {
-      key: 4,
-      label: "Price",
-    },
-    {
-      key: 5,
-      label: "Price (USD)",
+      label: "Value",
     },
     {
       key: 6,
-      label: "Buyer",
-    },
-    {
-      key: 7,
-      label: "Seller",
+      label: "Between",
     },
   ];
   const list = useAsyncList({
@@ -190,50 +169,68 @@ const TransactionTable = () => {
   });
 
   return (
-        <Table
-          removeWrapper
-          className="pb-3 min-h-[200px] overflow-x-scroll"
-          sortDescriptor={list.sortDescriptor}
-          onSortChange={list.sort}
-        >
-          <TableHeader columns={cols}>
-            {(column) => (
-              <TableColumn key={column.key} allowsSorting>
-                {column.label}
-              </TableColumn>
-            )}
-          </TableHeader>
-          <TableBody
-            items={list.items}
-            isLoading={isLoading}
-            loadingContent={<Spinner />}
-          >
-            {(item) => (
-              <TableRow key={item.ID}>
-                <TableCell>{item.ID}</TableCell>
-                <TableCell>{item.Market}</TableCell>
-                <TableCell>{item.Crypto}</TableCell>
-                <TableCell>{item.Price.toPrecision(3)}</TableCell>
-                <TableCell>{roundDollar(item.USD)}</TableCell>
-                <TableCell>
-                <a className="hover:underline">
-                      {item.Buyer}
-                    </a>
-                </TableCell>
-                <TableCell>
-                <a className="hover:underline">
-                      {item.Seller}
-                    </a>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-  );
-};
-
-const truncateAddress = (address) => {
-  return address.substring(0, 4) + "..." + address.substring(37, 41);
+    <Table
+    isCompact
+    removeWrapper
+    className="py-3 overflow-x-scroll"
+    sortDescriptor={list.sortDescriptor}
+    onSortChange={list.sort}
+    bottomContent={
+      <div className="flex w-full justify-center">
+        <Pagination
+          isCompact
+          showControls
+          showShadow
+          color="primary"
+          page={1}
+          total={10}
+          onChange={() => {}}
+        />
+      </div>
+    }
+  >
+    <TableHeader columns={cols}>
+      {(column) => (
+        <TableColumn key={column.key} allowsSorting>
+          {column.label}
+        </TableColumn>
+      )}
+    </TableHeader>
+    <TableBody
+      items={list.items}
+      isLoading={isLoading}
+      loadingContent={<Spinner />}
+    >
+      {(item) => (
+        <TableRow key={item.ID}>
+          <TableCell>
+            <a className="hover:underline">
+              {item.ID}
+            </a>
+          </TableCell>
+          <TableCell>{item.Market}</TableCell>
+          <TableCell>{`${item.Price.toPrecision(3)} ${
+            item.Crypto
+          } (${roundDollar(item.USD)})`}</TableCell>
+          <TableCell>
+            <p>
+              <span className="font-bold">From: </span>
+              <a className="hover:underline">
+                {item.Buyer}
+              </a>
+            </p>
+            <p>
+              <span className="font-bold">To: </span>
+              <a className="hover:underline">
+                {item.Seller}
+              </a>
+            </p>
+          </TableCell>
+        </TableRow>
+      )}
+    </TableBody>
+  </Table>
+);
 };
 
 const roundDollar = (num) => {

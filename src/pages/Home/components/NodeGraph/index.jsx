@@ -24,6 +24,7 @@ import { uniqueId, sample } from "lodash";
 import { getAllTransactions } from "../../../../api/models/Transactions";
 
 import "./style.css";
+import { Card, CardBody } from "@nextui-org/card";
 
 const truncateAddress = (address) => {
   return address.substring(0, 4) + "..." + address.substring(37, 41);
@@ -185,7 +186,8 @@ const NodeGraph = () => {
   // }, [address])
 
   return (
-    <div class={`${autoHeight ? `lg:h-full h-96` : `h-96`}`}>
+    <Card>
+      <CardBody className={`${autoHeight ? `lg:h-full h-96` : `h-96`}`}>
       <SigmaContainer
         style={{ height: "100%", width: "100%" }}
         className="rounded-medium bg-accent"
@@ -203,7 +205,8 @@ const NodeGraph = () => {
           <LayoutForceAtlas2Control settings={{ settings: { slowDown: 10 } }} />
         </ControlsContainer>
       </SigmaContainer>
-    </div>
+      </CardBody>
+    </Card>
   );
 };
 

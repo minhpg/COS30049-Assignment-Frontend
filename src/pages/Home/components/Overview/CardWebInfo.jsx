@@ -46,7 +46,7 @@ const columns = [
 const CardWebInformation = () => {
   return (
     <Card className="w-full">
-      <CardHeader class="px-7 pt-4">
+      <CardHeader className="px-7 pt-4">
         <h2 className="font-bold text-xl">Statistics</h2>
       </CardHeader>
       <CardBody className="px-4 py-0">
