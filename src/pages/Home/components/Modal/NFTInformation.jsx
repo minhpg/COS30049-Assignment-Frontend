@@ -9,7 +9,7 @@ import {
 } from "@nextui-org/react";
 
 
-import PreviewImage from "../../../../components/PreviewImage";
+import {PreviewImage} from "../../../../components/PreviewImage";
 
 const NFTInformation = () => {
   return (

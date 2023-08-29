@@ -22,19 +22,18 @@ const Home = () => {
             <CardETHInfo />
           </div>
           <div className="col-span-12">
-            <h1 className="text-2xl font-black">Overview</h1>
+            <h1 className="text-2xl font-black">Transaction Volume</h1>
           </div>
           <div className="col-span-12">
-
             <Charts />
           </div>
           <div className="col-span-12">
             <h1 className="text-2xl font-black">Transactions</h1>
           </div>
-          <div className="col-span-12">
+          <div className="col-span-12 lg:col-span-6">
             <CardTable />
           </div>
-          <div className="col-span-12">
+          <div className="col-span-12 lg:col-span-6">
             <CardNFT />
           </div>
           <div className="col-span-12">

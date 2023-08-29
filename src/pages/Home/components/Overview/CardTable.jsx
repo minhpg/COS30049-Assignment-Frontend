@@ -23,6 +23,7 @@ import { getLatestTransactions } from "../../../../api/models/Transactions";
 
 import AddressInfomationModal from "../Modal/AddressInfomationModal";
 import TransactionInformationModal from "../Modal/TransactionInformationModal";
+import { truncateAddress } from "../../../../utils";
 
 const CardTable = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -95,30 +96,18 @@ const CardTable = () => {
         isOpen={isOpenTransaction}
         onOpenChange={onOpenChangeTransaction}
       />
-      <Card className="w-full">
+      <Card>
         <CardHeader className="px-7 pt-6 -mb-2">
           <h2 className="font-bold text-xl">Recent Transactions</h2>
         </CardHeader>
         <CardBody className="px-4 py-0">
           <Table
+            isHeaderSticky
             isCompact
             removeWrapper
-            className="py-3 min-h-[400px] overflow-x-scroll"
+            className="py-3 lg:h-96"
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
-            bottomContent={
-              <div className="flex w-full justify-center">
-                <Pagination
-                  isCompact
-                  showControls
-                  showShadow
-                  color="primary"
-                  page={1}
-                  total={10}
-                  onChange={() => {}}
-                />
-              </div>
-            }
           >
             <TableHeader columns={cols}>
               {(column) => (
@@ -143,18 +132,22 @@ const CardTable = () => {
                   <TableCell>{`${item.Price.toPrecision(3)} ${
                     item.Crypto
                   } (${roundDollar(item.USD)})`}</TableCell>
-                  <TableCell>
+                  <TableCell className="whitespace-nowrap">
                     <p>
                       <span className="font-bold">From: </span>
-                      <a className="hover:underline" onClick={onOpenAddress}>
-                        {item.Buyer}
-                      </a>
+                      <Tooltip content={item.Seller}>
+                        <a className="hover:underline" onClick={onOpenAddress}>
+                          {truncateAddress(item.Seller)}
+                        </a>
+                      </Tooltip>
                     </p>
                     <p>
                       <span className="font-bold">To: </span>
-                      <a className="hover:underline" onClick={onOpenAddress}>
-                        {item.Seller}
-                      </a>
+                      <Tooltip content={item.Buyer}>
+                        <a className="hover:underline" onClick={onOpenAddress}>
+                          {truncateAddress(item.Buyer)}
+                        </a>
+                      </Tooltip>
                     </p>
                   </TableCell>
                 </TableRow>

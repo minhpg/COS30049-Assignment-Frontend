@@ -20,7 +20,7 @@ import { useAsyncList } from "@react-stately/data";
 
 import { useState } from "react";
 import { getTopNFTs } from "../../../../api/models/NFTs";
-import PreviewImage from "../../../../components/PreviewImage";
+import { TooltipPreviewImage } from "../../../../components/PreviewImage";
 
 const CardNFT = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,8 +35,12 @@ const CardNFT = () => {
       label: "Name",
     },
     {
+      key: 4,
+      label: "Collection",
+    },
+    {
       key: 3,
-      label: "Transaction Count",
+      label: "Txn Count",
     },
   ];
 
@@ -70,30 +74,18 @@ const CardNFT = () => {
 
   return (
     <>
-      <Card className="w-full">
+      <Card>
         <CardHeader className="px-7 pt-6 -mb-2">
           <h2 className="font-bold text-xl">Trending NFTs</h2>
         </CardHeader>
         <CardBody className="px-4 py-0">
-          <Table
+        <Table
+          isHeaderSticky
             isCompact
             removeWrapper
-            className="py-3 min-h-[400px] overflow-x-scroll"
+            className="py-3 lg:h-96"
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
-            bottomContent={
-              <div className="flex w-full justify-center">
-                <Pagination
-                  isCompact
-                  showControls
-                  showShadow
-                  color="primary"
-                  page={1}
-                  total={10}
-                  onChange={() => {}}
-                />
-              </div>
-            }
           >
             <TableHeader columns={cols}>
               {(column) => (
@@ -110,9 +102,12 @@ const CardNFT = () => {
               {(item) => (
                 <TableRow key={item.id}>
                   <TableCell>
-                      {item.id}
+                    <Tooltip placement="right" content={<TooltipPreviewImage urls={item.image_urls} alt={item.id}/>}>
+                    <span className="hover:underline">{item.id}</span> 
+                    </Tooltip>
                   </TableCell>
                   <TableCell>{item.name}</TableCell>
+                  <TableCell>{item.collection}</TableCell>
                   <TableCell>
                     {item.transaction_count}
                   </TableCell>
