@@ -11,6 +11,7 @@ import {
 
 import { useState } from "react";
 import AddressInfomationModal from "../Modal/AddressInfomationModal";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -28,7 +29,13 @@ const SearchBar = () => {
       <div className="grid grid-cols-12 justify-between gap-2">
         <Select label="Filter" className="col-span-12 sm:col-span-4" size="sm">
           <SelectItem key={1} value={1}>
-            Filter 1
+            Address
+          </SelectItem>
+          <SelectItem key={2} value={1}>
+            Transaction
+          </SelectItem>
+          <SelectItem key={3} value={1}>
+            NFT
           </SelectItem>
         </Select>
         <Input
@@ -55,7 +62,7 @@ const SearchBar = () => {
                     <ListboxItem key={index} onClick={() => {
                         onOpen()
                     }}>
-                      0xafe7e3264efca320af481af3408d6f348878ec88
+                      <Link to="/address/0xafe7e3264efca320af481af3408d6f348878ec88">0xafe7e3264efca320af481af3408d6f348878ec88</Link>
                     </ListboxItem>
                   );
                 })}

@@ -43,18 +43,14 @@ const PreviewImage = ({ urls, alt }) => {
 };
 
 const TooltipPreviewImage = ({ urls, alt }) => {
-  const [flip, setFlip] = useState(false);
   return (
     <Suspense>
-      <div className="flex justify-center w-48">
         <Img
-          onClick={() => setFlip(!flip)}
           src={urls}
           alt={alt}
           className="w-full"
           loader={<Loader />}
         />
-      </div>
     </Suspense>
   );
 };

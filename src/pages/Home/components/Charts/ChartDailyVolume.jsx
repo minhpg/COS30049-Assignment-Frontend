@@ -38,7 +38,7 @@ const OPTIONS = {
 
   xaxis: {
     labels: {
-      show: true,
+      show: false,
       style: {
         colors: "var(--nextui-colors-accents8)",
         fontFamily: "Inter, sans-serif",
@@ -84,13 +84,13 @@ const ChartDailyVolume = () => {
   useEffect(() => {
     const dataFetch = async () => {
       const response = await getYearlyVolume();
-      const new_options = OPTIONS;
+      const new_options = {...OPTIONS};
       new_options.xaxis.categories = ["12/08", "13/08", "14/08", "15/08", "16/08"]
       setOptions(new_options);
       const volume_data = response.map((item) => item.totalVolume);
       setState([
         {
-          series: "total_vlume",
+          series: "Daily Volume",
           data: volume_data,
         },
       ]);

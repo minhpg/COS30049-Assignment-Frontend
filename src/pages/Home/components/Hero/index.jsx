@@ -11,7 +11,7 @@ const Hero = () => {
       </div>
       <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-3xl font-black tracking-tight sm:text-5xl">
             NFT Transaction Explorer
           </h1>
         </div>

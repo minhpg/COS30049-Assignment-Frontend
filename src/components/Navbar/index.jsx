@@ -6,17 +6,13 @@ import {
   Link,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem,
-  Avatar,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu
-  ,DropdownTrigger
+  NavbarMenuItem
 } from "@nextui-org/react";
 
 import Prices from "./Prices";
 
 import Logo from "../Logo";
+import UserDropdown from "./UserDropdown";
 
 export default () => {
   const menuItems = [
@@ -68,26 +64,7 @@ export default () => {
 
         <NavbarContent justify="end">
           <NavbarItem>
-            <Dropdown>
-              <DropdownTrigger>
-                <Avatar
-                  isBordered
-                  color="default"
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-                />
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="edit">Edit profile</DropdownItem>
-                <DropdownItem key="transactions">View transactions</DropdownItem>
-                <DropdownItem
-                  key="logout"
-                  className="text-danger"
-                  color="danger"
-                >
-                  Log out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                <UserDropdown />
           </NavbarItem>
         </NavbarContent>
 

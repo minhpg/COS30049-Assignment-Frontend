@@ -108,6 +108,19 @@ const CardTable = () => {
             className="py-3 lg:h-96"
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
+            bottomContent={
+              <div className="flex lg:hidden w-full justify-center">
+                <Pagination
+                  isCompact
+                  showControls
+                  showShadow
+                  color="secondary"
+                  page={1}
+                  total={10}
+                  onChange={() => {}}
+                />
+              </div>
+            }
           >
             <TableHeader columns={cols}>
               {(column) => (

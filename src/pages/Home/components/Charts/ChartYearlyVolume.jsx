@@ -29,7 +29,8 @@ const OPTIONS = {
 
   xaxis: {
     labels: {
-      show: true,
+      categories: [2017,2018,2019,2020,2021],
+      show: false,
       style: {
         colors: "var(--nextui-colors-accents8)",
         fontFamily: "Inter, sans-serif",
@@ -70,26 +71,22 @@ const OPTIONS = {
 
 const ChartYearlyVolume = () => {
   const [state, setState] = useState([]);
-  const [options, setOptions] = useState(OPTIONS);
+  // const [options, setOptions] = useState(OPTIONS);
 
   useEffect(() => {
     const dataFetch = async () => {
       const response = await getYearlyVolume();
-      const new_options = OPTIONS;
-      new_options.xaxis.categories = response.map((item) => item.year);
-      setOptions(new_options);
-      const volume_data = response.map((item) => item.transactions);
       setState([
         {
-          series: "Transactions",
-          data: volume_data,
+          series: "Txn Volume",
+          data: response.map((item) => item.transactions),
         },
       ]);
     };
     dataFetch();
   }, []);
 
-  return <Chart options={options} series={state} type="area" />;
+  return <Chart options={OPTIONS} series={state} type="area" />;
 };
 
 export default ChartYearlyVolume;

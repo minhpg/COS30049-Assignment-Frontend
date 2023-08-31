@@ -1,4 +1,3 @@
-import NodeGraph from "./components/NodeGraph";
 import CardTable from "./components/Overview/CardTable";
 import Hero from "./components/Hero";
 import CardWebInformation from "./components/Overview/CardWebInfo";
@@ -35,12 +34,6 @@ const Home = () => {
           </div>
           <div className="col-span-12 lg:col-span-6">
             <CardNFT />
-          </div>
-          <div className="col-span-12">
-            <div className="py-3">
-              <h1 className="text-2xl font-black">Network Visualization</h1>
-            </div>
-            <NodeGraph />
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ const getLatestTransactions = async (limit) => {
         t.Crypto AS Crypto,
         t.Price_Crypto AS Price,
         t.Price_USD AS USD,
+        t.Transaction_hash AS hash,
         buyer.address AS Buyer, 
         seller.address as Seller
         ORDER BY t.Datetime_updated

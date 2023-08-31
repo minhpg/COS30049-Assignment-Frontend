@@ -187,7 +187,7 @@ const NodeGraph = () => {
 
   return (
     <Card>
-      <CardBody className={`${autoHeight ? `lg:h-full h-96` : `h-96`}`}>
+      <CardBody className={`p-0 ${autoHeight ? `lg:h-full h-96` : `h-96`}`}>
       <SigmaContainer
         style={{ height: "100%", width: "100%" }}
         className="rounded-medium bg-accent"

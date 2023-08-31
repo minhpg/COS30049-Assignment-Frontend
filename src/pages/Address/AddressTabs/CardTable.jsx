@@ -16,37 +16,39 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
+import { Link } from 'react-router-dom'
+
 import { useAsyncList } from "@react-stately/data";
 
 import { useState } from "react";
-import { getTopNFTs } from "../../../../api/models/NFTs";
-import { TooltipPreviewImage } from "../../../../components/PreviewImage";
+import { getLatestTransactions } from "../../../api/models/Transactions";
 
-const CardNFT = () => {
+import { truncateAddress } from "../../../utils";
+
+const CardTable = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const cols = [
     {
       key: 1,
-      label: `ID`,
+      label: `Transaction Hash`,
     },
     {
       key: 2,
-      label: "Name",
-    },
-    {
-      key: 4,
-      label: "Collection",
+      label: "Market",
     },
     {
       key: 3,
-      label: "Txn Count",
+      label: "Value",
+    },
+    {
+      key: 6,
+      label: "Between",
     },
   ];
-
   const list = useAsyncList({
     async load({ signal }) {
-      let res = await getTopNFTs(20, { signal });
+      let res = await getLatestTransactions(10, { signal });
       setIsLoading(false);
       console.log(res);
       return {
@@ -73,31 +75,27 @@ const CardNFT = () => {
   });
 
   return (
-    <>
       <Card>
-        <CardHeader className="px-7 pt-6 -mb-2">
-          <h2 className="font-bold text-xl">Trending NFTs</h2>
-        </CardHeader>
         <CardBody className="px-4 py-0">
           <Table
             isHeaderSticky
             isCompact
             removeWrapper
-            className="py-3 lg:h-96"
+            className="py-3 lg:h-96 min-h-[400px]"
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
             bottomContent={
-              <div className="flex lg:hidden w-full justify-center">
-                <Pagination
-                  isCompact
-                  showControls
-                  showShadow
-                  color="secondary"
-                  page={1}
-                  total={10}
-                  onChange={() => {}}
-                />
-              </div>
+              isLoading ? <></> : <div className="flex lg:hidden w-full justify-center">
+              <Pagination
+                isCompact
+                showControls
+                showShadow
+                color="primary"
+                page={1}
+                total={10}
+                onChange={() => {}}
+              />
+            </div>
             }
           >
             <TableHeader columns={cols}>
@@ -113,33 +111,40 @@ const CardNFT = () => {
               loadingContent={<Spinner />}
             >
               {(item) => (
-                <TableRow key={item.id}>
+                <TableRow key={item.ID}>
                   <TableCell>
-                    <Tooltip
-                      placement="right"
-                      content={
-                        <div className="flex flex-col justify-center w-48 p-2">
-                          <TooltipPreviewImage
-                            urls={item.image_urls}
-                            alt={item.id}
-                          />
-                          <a className="font-bold underline mt-2 mx-auto">{item.name}</a>
-                        </div>
-                      }
-                    >
-                      <span className="hover:underline">{item.id}</span>
-                    </Tooltip>
+                    <Link to={`/transaction/${item.hash}`} className="text-primary hover:underline">
+                      {truncateAddress(item.hash)}
+                    </Link>
                   </TableCell>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.collection}</TableCell>
-                  <TableCell>{item.transaction_count}</TableCell>
+                  <TableCell>{item.Market}</TableCell>
+                  <TableCell>{`${item.Price.toPrecision(3)} ${
+                    item.Crypto
+                  } (${roundDollar(item.USD)})`}</TableCell>
+                  <TableCell className="whitespace-nowrap">
+                    <p>
+                      <span className="font-bold">From: </span>
+                      <Tooltip content={item.Seller}>
+                        <Link to={`/address/${item.Seller}`} className="hover:underline text-primary">
+                          {truncateAddress(item.Seller)}
+                        </Link>
+                      </Tooltip>
+                    </p>
+                    <p>
+                      <span className="font-bold">To: </span>
+                      <Tooltip content={item.Buyer}>
+                        <Link to={`/address/${item.Buyer}`} className="hover:underline text-primary">
+                          {truncateAddress(item.Buyer)}
+                        </Link>
+                      </Tooltip>
+                    </p>
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
         </CardBody>
       </Card>
-    </>
   );
 };
 
@@ -152,4 +157,4 @@ const roundDollar = (num) => {
   return formatter.format(num);
 };
 
-export default CardNFT;
+export default CardTable;

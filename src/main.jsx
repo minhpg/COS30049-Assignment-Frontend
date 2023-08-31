@@ -9,14 +9,24 @@ import Home from "./pages/Home";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Address from "./pages/Address";
+import Transaction from "./pages/Transaction";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-]);
 
+  },
+  {
+    path: "/address/:address",
+    element: <Address />
+},
+{
+  path: "/transaction/:transaction",
+  element: <Transaction />
+}
+])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

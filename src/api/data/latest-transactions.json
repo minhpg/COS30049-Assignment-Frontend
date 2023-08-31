@@ -7,6 +7,7 @@
                 "Crypto",
                 "Price",
                 "USD",
+                "hash",
                 "Buyer",
                 "Seller"
             ],
@@ -18,10 +19,12 @@
                         "ETH",
                         1.75,
                         1533.35875,
+                        "0x7cd2d6fbbd9fb2430b39754d89e5fe0f70934cbb9774b615ea6abc592cc98726",
                         "0xafe7e3264efca320af481af3408d6f348878ec88",
                         "0xa77c4fe17cfd86a499ade6ecc8b3bee2f698c8e0"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -38,10 +41,12 @@
                         "ETH",
                         20.065798611111116,
                         14917.91797743056,
+                        "0xd7d21d15a331fe2445f1d1720236a35fb431ec706a1af6f0f25bf2bda5fd39f8",
                         "0xe820f08968489c466c77c2ea1a5c436d8c70d896",
                         "0x53ec525b9df849be99263311f5b7f9fd6cfebea6"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -58,10 +63,12 @@
                         "ETH",
                         3.860868055555556,
                         2870.362355902778,
+                        "0x29cabf05f3fcc925b436911291a99c1fa0a427c3da02c116ba6d690d33fb9416",
                         "0xeb654da17d410c64c2e6a11a7c80b90c04d381fa",
                         "0x10ab6d4b3f63495f0c5a1a3a640f0990390d7453"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -78,10 +85,12 @@
                         "ETH",
                         1.5,
                         1115.1750000000004,
+                        "0xeebfb42dfc9decc9d522f81561bdac030f0558a2f7d8499c173984b4e6cd0766",
                         "0x9ee2f5164e04d843098bc1923e328caa4350391d",
                         "0x8ad7e433f00fbb22ae23f8eda8aadd359d411cf4"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -98,10 +107,12 @@
                         "ETH",
                         2.0,
                         1486.9,
+                        "0xc64ba4b7fca93f8df7826047dc4c55e4f3be0e8a0e8af8ee4a2a060c2fa65060",
                         "0x9ee2f5164e04d843098bc1923e328caa4350391d",
                         "0xa2381223639181689cd6c46d38a1a4884bb6d83c"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -118,10 +129,12 @@
                         "ETH",
                         4.9961414351851845,
                         3714.3813499884254,
+                        "0xed81fc9a15c624f182d5a7db2d14f52827abf6c433a16957f59c0c6eaeb86f1a",
                         "0x9ee2f5164e04d843098bc1923e328caa4350391d",
                         "0x7494eb2916cad8649f4f91eb1db6e20be605dad6"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -138,10 +151,12 @@
                         "ETH",
                         1.5,
                         1024.44,
+                        "0x09a5e29e4164f9fc1e908495849f5b890f214a9667968d5683e97627c7fd337c",
                         "0x7d1c097a9ee545d01a428a3cc071039cde6633c7",
                         "0x98aec1e4e88564a48331e55b4366f6f4b2e48f24"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -158,10 +173,12 @@
                         "ETH",
                         1.0,
                         682.9599999999998,
+                        "0x2cd837a7b629b379e0c8de1eaf91a11808f8287b2bf3690c2fc5efaf5d98a963",
                         "0xa2381223639181689cd6c46d38a1a4884bb6d83c",
                         "0x5c035bb4cb7dacbfee076a5e61aa39a10da2e956"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -178,10 +195,12 @@
                         "ETH",
                         4.0,
                         3153.1199999999994,
+                        "0x92993dfd6a9b96c8bfd2ffe47678b2a4c654fd8d5d41372a003883595fe8772a",
                         "0xe912145bb163062c24c06ed8701eb1fb233198fc",
                         "0x8506295d413bb6f3f24bb7d0933b1c7b0c4c35f3"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
@@ -198,10 +217,12 @@
                         "ETH",
                         7.38630863888889,
                         5822.479373863333,
+                        "0xc19416ef5cbc15623ff750760eee5fc0b2dfaa642e037f57db369f3f05306085",
                         "0xc0fa5f0fedcb612d026353604491be33d5a7e9d8",
                         "0x4ada9ba6e1ff8ccd3cad7dc5b2025d66855aba8e"
                     ],
                     "meta": [
+                        null,
                         null,
                         null,
                         null,
