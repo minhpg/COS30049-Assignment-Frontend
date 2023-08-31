@@ -48,7 +48,6 @@ const CardTable = () => {
     async load({ signal }) {
       let res = await getLatestTransactions(10, { signal });
       setIsLoading(false);
-      console.log(res);
       return {
         items: res,
       };

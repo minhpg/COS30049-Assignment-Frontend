@@ -5,10 +5,14 @@ import {
   DropdownMenu,
   DropdownTrigger,
   DropdownSection,
+  Switch,
   User
 } from "@nextui-org/react";
 
+import { useDarkMode } from 'usehooks-ts'
+
 const UserDropdown = () => {
+  const { isDarkMode, toggle, enable, disable } = useDarkMode()  
   return (
     <Dropdown
       showArrow
@@ -70,18 +74,12 @@ const UserDropdown = () => {
             key="theme"
             className="cursor-default"
             endContent={
-              <select
-                className="z-10 outline-none w-16 py-0.5 rounded-md text-tiny group-data-[hover=true]:border-default-500 border-small border-default-300 dark:border-default-200 bg-transparent text-default-500"
-                id="theme"
-                name="theme"
-              >
-                <option>System</option>
-                <option>Dark</option>
-                <option>Light</option>
-              </select>
+              <Switch onValueChange={(isSelected) => {
+                isSelected ? enable() : disable()
+              }} color="default" size="sm" className="z-10 w-16 py-0.5"></Switch>
             }
           >
-            Theme
+            Dark mode
           </DropdownItem>
         </DropdownSection>
 

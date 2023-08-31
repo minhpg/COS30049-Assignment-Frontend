@@ -8,11 +8,11 @@ const CardMoreInfo = () => {
         </CardHeader>
         <CardBody className="gap-4 text-sm">
           <div className="flex flex-wrap gap-2">
-            <Chip color="primary">Primary</Chip>
-            <Chip color="secondary">Secondary</Chip>
-            <Chip color="success">Success</Chip>
-            <Chip color="warning">Warning</Chip>
-            <Chip color="danger">Danger</Chip>
+            <Chip color="primary">#tag1</Chip>
+            <Chip color="secondary">#tag2</Chip>
+            <Chip color="success">#tag3</Chip>
+            <Chip color="warning">#tag4</Chip>
+            <Chip color="danger">#tag5</Chip>
           </div>
 
           <p className="font-light">

@@ -50,7 +50,6 @@ const CardTable = () => {
     async load({ signal }) {
       let res = await getLatestTransactions(10, { signal });
       setIsLoading(false);
-      console.log(res);
       return {
         items: res,
       };
@@ -85,17 +84,17 @@ const CardTable = () => {
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
             bottomContent={
-              isLoading ? <></> : <div className="flex lg:hidden w-full justify-center">
-              <Pagination
-                isCompact
-                showControls
-                showShadow
-                color="primary"
-                page={1}
-                total={10}
-                onChange={() => {}}
-              />
-            </div>
+              <div className="flex lg:hidden w-full justify-center">
+                <Pagination
+                  isCompact
+                  showControls
+                  showShadow
+                  color="secondary"
+                  page={1}
+                  total={10}
+                  onChange={() => {}}
+                />
+              </div>
             }
           >
             <TableHeader columns={cols}>
