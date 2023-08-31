@@ -13,17 +13,15 @@ import {
   TableRow,
   TableCell,
   Pagination,
-  useDisclosure,
 } from "@nextui-org/react";
 
 import { useAsyncList } from "@react-stately/data";
 
 import { useState } from "react";
 import { getLatestTransactions } from "../../../../api/models/Transactions";
-
-import AddressInfomationModal from "../Modal/AddressInfomationModal";
-import TransactionInformationModal from "../Modal/TransactionInformationModal";
 import { truncateAddress } from "../../../../utils";
+
+import { Link } from "react-router-dom";
 
 const CardTable = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +29,7 @@ const CardTable = () => {
   const cols = [
     {
       key: 1,
-      label: `ID`,
+      label: `Txn Hash`,
     },
     {
       key: 2,
@@ -74,72 +72,51 @@ const CardTable = () => {
     },
   });
 
-  const {
-    isOpen: isOpenAddress,
-    onOpen: onOpenAddress,
-    onOpenChange: onOpenChangeAddress,
-  } = useDisclosure();
-
-  const {
-    isOpen: isOpenTransaction,
-    onOpen: onOpenTransaction,
-    onOpenChange: onOpenChangeTransaction,
-  } = useDisclosure();
-
   return (
-    <>
-      <AddressInfomationModal
-        isOpen={isOpenAddress}
-        onOpenChange={onOpenChangeAddress}
-      />
-      <TransactionInformationModal
-        isOpen={isOpenTransaction}
-        onOpenChange={onOpenChangeTransaction}
-      />
-      <Card>
-        <CardHeader className="px-7 pt-6 -mb-2">
-          <h2 className="font-bold text-xl">Recent Transactions</h2>
-        </CardHeader>
-        <CardBody className="px-4 py-0">
-          <Table
-            isHeaderSticky
-            isCompact
-            removeWrapper
-            className="py-3 lg:h-96"
-            sortDescriptor={list.sortDescriptor}
-            onSortChange={list.sort}
-            bottomContent={
-              <div className="flex lg:hidden w-full justify-center">
-                <Pagination
-                  isCompact
-                  showControls
-                  showShadow
-                  color="secondary"
-                  page={1}
-                  total={10}
-                  onChange={() => {}}
-                />
-              </div>
-            }
+    <Card>
+      <CardHeader className="px-7 pt-6 -mb-2">
+        <h2 className="font-bold text-xl">Recent Transactions</h2>
+      </CardHeader>
+      <CardBody className="px-4 py-0">
+        <Table
+          isHeaderSticky
+          isCompact
+          removeWrapper
+          className="py-3 lg:h-96"
+          sortDescriptor={list.sortDescriptor}
+          onSortChange={list.sort}
+          bottomContent={
+            <div className="flex lg:hidden w-full justify-center">
+              <Pagination
+                isCompact
+                showControls
+                showShadow
+                color="secondary"
+                page={1}
+                total={10}
+                onChange={() => {}}
+              />
+            </div>
+          }
+        >
+          <TableHeader columns={cols}>
+            {(column) => (
+              <TableColumn key={column.key} allowsSorting>
+                {column.label}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody
+            items={list.items}
+            isLoading={isLoading}
+            loadingContent={<Spinner />}
           >
-            <TableHeader columns={cols}>
-              {(column) => (
-                <TableColumn key={column.key} allowsSorting>
-                  {column.label}
-                </TableColumn>
-              )}
-            </TableHeader>
-            <TableBody
-              items={list.items}
-              isLoading={isLoading}
-              loadingContent={<Spinner />}
-            >
               {(item) => (
                 <TableRow key={item.ID}>
                   <TableCell>
-                    <a className="hover:underline" onClick={onOpenTransaction}>
-                      {item.ID}
-                    </a>
+                    <Link to={`/transaction/${item.hash}`} className="text-primary hover:underline">
+                      {truncateAddress(item.hash)}
+                    </Link>
                   </TableCell>
                   <TableCell>{item.Market}</TableCell>
                   <TableCell>{`${item.Price.toPrecision(3)} ${
@@ -149,27 +126,26 @@ const CardTable = () => {
                     <p>
                       <span className="font-bold">From: </span>
                       <Tooltip content={item.Seller}>
-                        <a className="hover:underline" onClick={onOpenAddress}>
+                        <Link to={`/address/${item.Seller}`} className="hover:underline text-primary">
                           {truncateAddress(item.Seller)}
-                        </a>
+                        </Link>
                       </Tooltip>
                     </p>
                     <p>
                       <span className="font-bold">To: </span>
                       <Tooltip content={item.Buyer}>
-                        <a className="hover:underline" onClick={onOpenAddress}>
+                        <Link to={`/address/${item.Buyer}`} className="hover:underline text-primary">
                           {truncateAddress(item.Buyer)}
-                        </a>
+                        </Link>
                       </Tooltip>
                     </p>
                   </TableCell>
                 </TableRow>
               )}
-            </TableBody>
-          </Table>
-        </CardBody>
-      </Card>
-    </>
+          </TableBody>
+        </Table>
+      </CardBody>
+    </Card>
   );
 };
 

@@ -10,7 +10,6 @@ import {
 } from "@nextui-org/react";
 
 import { useState } from "react";
-import AddressInfomationModal from "../Modal/AddressInfomationModal";
 import { Link } from "react-router-dom";
 
 const SearchBar = () => {
@@ -18,14 +17,11 @@ const SearchBar = () => {
 
   const [searchFocus, setSearchFocus] = useState(false);
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   return (
     <div
       onFocus={() => setSearchFocus(true)}
       onBlur={() => setSearchFocus(false)}
     >
-      <AddressInfomationModal isOpen={isOpen} onOpenChange={onOpenChange} />
       <div className="grid grid-cols-12 justify-between gap-2">
         <Select label="Filter" className="col-span-12 sm:col-span-4" size="sm">
           <SelectItem key={1} value={1}>
