@@ -1,11 +1,8 @@
 import {
   Card,
   CardBody,
-  CardHeader,
   Spinner,
   Tooltip,
-} from "@nextui-org/react";
-import {
   Table,
   TableHeader,
   TableBody,
@@ -13,17 +10,13 @@ import {
   TableRow,
   TableCell,
   Pagination,
-  useDisclosure,
 } from "@nextui-org/react";
-
 import { Link } from 'react-router-dom'
-
 import { useAsyncList } from "@react-stately/data";
-
 import { useState } from "react";
-import { getLatestTransactions } from "../../../api/models/Transactions";
 
-import { truncateAddress } from "../../../utils";
+import { getLatestTransactions } from "../../../api/models/Transactions";
+import { roundDollar, truncateAddress } from "../../../utils";
 
 const CardTable = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -74,13 +67,13 @@ const CardTable = () => {
   });
 
   return (
-      <Card>
+      <Card className="lg:h-96">
         <CardBody className="px-4 py-0">
           <Table
             isHeaderSticky
             isCompact
             removeWrapper
-            className="py-3 lg:h-96 min-h-[400px]"
+            className="py-3 min-h-96"
             sortDescriptor={list.sortDescriptor}
             onSortChange={list.sort}
             bottomContent={
@@ -145,15 +138,6 @@ const CardTable = () => {
         </CardBody>
       </Card>
   );
-};
-
-const roundDollar = (num) => {
-  if (!num) return 0.0;
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-  return formatter.format(num);
 };
 
 export default CardTable;

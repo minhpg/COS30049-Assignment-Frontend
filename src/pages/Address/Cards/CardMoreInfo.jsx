@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardBody, Chip } from '@nextui-org/react'
 import { Link } from 'react-router-dom'
+
 const CardMoreInfo = () => {
     return (
         <Card className="h-full">

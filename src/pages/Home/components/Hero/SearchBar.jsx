@@ -6,9 +6,7 @@ import {
   ListboxItem,
   Select,
   SelectItem,
-  useDisclosure,
 } from "@nextui-org/react";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -55,10 +53,15 @@ const SearchBar = () => {
                 .fill()
                 .map((index) => {
                   return (
-                    <ListboxItem key={index} onClick={() => {
-                        onOpen()
-                    }}>
-                      <Link to="/address/0xafe7e3264efca320af481af3408d6f348878ec88">0xafe7e3264efca320af481af3408d6f348878ec88</Link>
+                    <ListboxItem
+                      key={index}
+                      onClick={() => {
+                        onOpen();
+                      }}
+                    >
+                      <Link to="/address/0xafe7e3264efca320af481af3408d6f348878ec88">
+                        0xafe7e3264efca320af481af3408d6f348878ec88
+                      </Link>
                     </ListboxItem>
                   );
                 })}

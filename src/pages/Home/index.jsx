@@ -1,11 +1,15 @@
-import CardTable from "./components/Overview/CardTable";
+import { useDocumentTitle } from "usehooks-ts";
+
 import Hero from "./components/Hero";
-import CardWebInformation from "./components/Overview/CardWebInfo";
 import Charts from "./components/Charts";
+
 import CardETHInfo from "./components/Overview/CardETHInfo";
 import CardNFT from "./components/Overview/CardNFT";
+import CardTable from "./components/Overview/CardTable";
+import CardWebInformation from "./components/Overview/CardWebInfo";
 
 const Home = () => {
+  useDocumentTitle("NFT Transaction Explorer")
   return (
     <>
       <Hero />

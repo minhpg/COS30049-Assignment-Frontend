@@ -1,7 +1,6 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
+import React, { useEffect } from "react";
 import { NextUIProvider } from "@nextui-org/react";
-import "./index.css";
 
 import {
   createBrowserRouter,
@@ -10,23 +9,31 @@ import {
   Route,
 } from "react-router-dom";
 
-import Home from "./pages/Home";
+import { useDarkMode } from "usehooks-ts";
 
+import "./index.css";
+
+// Import pages
+import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Address from "./pages/Address";
 import Transaction from "./pages/Transaction";
-import ScrollToTop from "./ScrollToTop";
 
-import { useDarkMode } from 'usehooks-ts'
+import ScrollToTop from "./utils/ScrollToTop";
 
 const Root = () => {
-  const { isDarkMode } = useDarkMode()
+  const { isDarkMode } = useDarkMode();
+  useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme', isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
   return (
-    <>
+    <NextUIProvider>
       <ScrollToTop />
       <main
-        className={`${isDarkMode ? 'dark' : 'light'} text-foreground bg-background font-sans antialiased`}
+        className={`${
+          isDarkMode ? "dark" : "light"
+        } text-foreground bg-background font-sans antialiased`}
       >
         <Navbar />
         <Routes>
@@ -36,7 +43,7 @@ const Root = () => {
         </Routes>
         <Footer />
       </main>
-    </>
+    </NextUIProvider>
   );
 };
 
@@ -44,8 +51,6 @@ const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <NextUIProvider theme="dark">
-      <RouterProvider router={router} />
-    </NextUIProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

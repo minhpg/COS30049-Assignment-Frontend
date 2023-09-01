@@ -26,7 +26,6 @@ const UserDropdown = () => {
         <Avatar isBordered color="default" src="/public/ban.jpeg" />
       </DropdownTrigger>
       <DropdownMenu
-        aria-label="Custom item styles"
         disabledKeys={["profile"]}
         className="p-3"
         itemClasses={{
@@ -48,6 +47,7 @@ const UserDropdown = () => {
             isReadOnly
             key="profile"
             className="h-14 gap-2 opacity-100"
+            disable
           >
             <User
               name="Bao An"
@@ -76,7 +76,9 @@ const UserDropdown = () => {
             endContent={
               <Switch onValueChange={(isSelected) => {
                 isSelected ? enable() : disable()
-              }} color="default" size="sm" className="z-10 w-16 py-0.5"></Switch>
+              }} 
+              defaultSelected={isDarkMode}
+              color="default" size="sm" className="z-10 w-16 py-0.5"></Switch>
             }
           >
             Dark mode

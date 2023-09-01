@@ -1,12 +1,13 @@
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import {
+  Card,
+  CardBody,
+  CardHeader,
   Table,
   TableHeader,
   TableBody,
   TableColumn,
   TableRow,
   TableCell,
-  getKeyValue,
 } from "@nextui-org/react";
 
 const rows = [
@@ -23,23 +24,23 @@ const rows = [
   {
     key: "3",
     title: "First txn date",
-    value: "September 19, 2018"
+    value: "September 19, 2018",
   },
   {
     key: "4",
     title: "Maximum txn amount",
-    value: "$5.91"
+    value: "$5.91",
   },
   {
     key: "5",
     title: "Total received",
-    value: "$123,123.23"
+    value: "$123,123.23",
   },
   {
     key: "6",
     title: "Total sent",
-    value: "$1,198,412.12"
-  }
+    value: "$1,198,412.12",
+  },
 ];
 
 const columns = [
@@ -57,7 +58,12 @@ const CardAddressInformation = () => {
   return (
     <Card className="w-full">
       <CardBody className="px-4 py-0">
-        <Table hideHeader aria-label="Example table with dynamic content" removeWrapper className="pb-3 pt-2">
+        <Table
+          hideHeader
+          aria-label="Example table with dynamic content"
+          removeWrapper
+          className="pb-3 pt-2"
+        >
           <TableHeader columns={columns}>
             {(column) => (
               <TableColumn key={column.key}>{column.label}</TableColumn>
@@ -67,7 +73,9 @@ const CardAddressInformation = () => {
             {(item) => (
               <TableRow key={item.key}>
                 <TableCell>{item.title}</TableCell>
-                <TableCell className="font-light text-right">{item.value}</TableCell>
+                <TableCell className="font-light text-right">
+                  {item.value}
+                </TableCell>
               </TableRow>
             )}
           </TableBody>

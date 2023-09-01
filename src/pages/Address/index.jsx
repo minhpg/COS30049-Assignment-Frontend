@@ -1,13 +1,16 @@
-import { Card, CardBody, CardHeader, Chip, Image } from "@nextui-org/react";
+import { Card, CardHeader, Image } from "@nextui-org/react";
+import { useParams } from "react-router-dom";
+import { useDocumentTitle } from "usehooks-ts";
+
+import CardMoreInfo from "./Cards/CardMoreInfo";
+import CardOverview from "./Cards/CardOverview";
 import CardUserNFTs from "./Cards/CardUserNFTs";
 import AddressTabs from "./AddressTabs";
 
-import { useParams } from "react-router-dom";
-import CardMoreInfo from "./Cards/CardMoreInfo";
-import CardOverview from "./Cards/CardOverview";
 
 const Address = () => {
-  let { address } = useParams();
+  const { address } = useParams();
+  useDocumentTitle("Address " + address);
 
   return (
     <div className="container mx-auto">

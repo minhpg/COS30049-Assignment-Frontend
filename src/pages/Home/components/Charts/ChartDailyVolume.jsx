@@ -1,16 +1,8 @@
 import Chart from "react-apexcharts";
 import { useState, useEffect } from "react";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
-import { getYearlyVolume } from "../../../../api/models/Statistics";
 
-const roundDollar = (num) => {
-  if (!num) return 0.0;
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-  return formatter.format(num);
-};
+import { getYearlyVolume } from "../../../../api/models/Statistics";
+import { roundDollar } from "../../../../utils";
 
 const OPTIONS = {
   chart: {

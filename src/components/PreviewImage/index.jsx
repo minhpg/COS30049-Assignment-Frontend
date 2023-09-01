@@ -1,9 +1,6 @@
 import { Img } from "react-image";
-
 import ReactCardFlip from "react-card-flip";
-
 import { useState, Suspense } from "react";
-
 import { Spinner } from "@nextui-org/react";
 
 const Loader = () => {
@@ -45,17 +42,9 @@ const PreviewImage = ({ urls, alt }) => {
 const TooltipPreviewImage = ({ urls, alt }) => {
   return (
     <Suspense>
-        <Img
-          src={urls}
-          alt={alt}
-          className="w-full"
-          loader={<Loader />}
-        />
+      <Img src={urls} alt={alt} className="w-full" loader={<Loader />} />
     </Suspense>
   );
 };
 
-export {
-  TooltipPreviewImage,
-  PreviewImage
-};
+export { TooltipPreviewImage, PreviewImage };

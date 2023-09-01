@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { getTopNFTs } from "../../../api/models/NFTs";
 import { Img } from "react-image";
-
 import { Card, CardFooter } from "@nextui-org/react";
+
+import { getTopNFTs } from "../../../api/models/NFTs";
+
 const CardUserNFTs = () => {
   const [data, setData] = useState([]);
   useEffect(() => {

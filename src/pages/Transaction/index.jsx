@@ -1,9 +1,13 @@
-import { Card, CardBody, Chip, Divider } from "@nextui-org/react";
+import { Card, CardBody, Divider } from "@nextui-org/react";
 import { Link, useParams } from "react-router-dom";
+import { useDocumentTitle } from "usehooks-ts";
 
 import { PreviewImage } from "../../components/PreviewImage";
+
 const Transaction = () => {
   const { transaction } = useParams();
+  useDocumentTitle("Transaction "+transaction)
+  
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 p-5 gap-5">
@@ -21,6 +25,7 @@ const Transaction = () => {
               <div className="col-span-8">
                 <p>{transaction}</p>
               </div>
+
               <div className="col-span-4">
                 <h2 className="font-bold">Status</h2>
               </div>
@@ -43,15 +48,18 @@ const Transaction = () => {
                   Success
                 </p>
               </div>
+
               <div className="col-span-4">
                 <h2 className="font-bold">Timestamp</h2>
               </div>
               <div className="col-span-8">
                 <p>6 days 3 hrs ago (Aug-25-2023 01:00:59 AM +UTC)</p>
               </div>
+
               <div className="col-span-8 md:col-span-12">
                 <Divider />
               </div>
+
               <div className="col-span-4">
                 <h2 className="font-bold">From</h2>
               </div>
@@ -63,6 +71,7 @@ const Transaction = () => {
                   0xC58EF7ba444c41669cdf4d9191E1095feBad0b9D
                 </Link>
               </div>
+
               <div className="col-span-4">
                 <h2 className="font-bold">To</h2>
               </div>
@@ -74,6 +83,7 @@ const Transaction = () => {
                   0xC58EF7ba444c41669cdf4d9191E1095feBad0b9D
                 </Link>
               </div>
+              
               <div className="col-span-8 md:col-span-12">
                 <Divider />
               </div>
@@ -86,6 +96,7 @@ const Transaction = () => {
                   10 ETH <span className="text-xs">($12,231)</span>
                 </p>
               </div>
+
               <div className="col-span-4">
                 <h2 className="font-bold">Transaction Fee</h2>
               </div>
@@ -95,6 +106,7 @@ const Transaction = () => {
                   <span className="text-xs">($12,231)</span>
                 </p>
               </div>
+              
               <div className="col-span-4">
                 <h2 className="font-bold">Gas Price</h2>
               </div>
@@ -104,6 +116,7 @@ const Transaction = () => {
                   <span className="text-xs">(0.000000020173529576 ETH)</span>
                 </p>
               </div>
+
               <div className="col-span-8 md:col-span-12">
                 <Divider />
               </div>
@@ -113,9 +126,7 @@ const Transaction = () => {
               </div>
               <div className="col-span-8 md:col-span-12 flex justify-center">
                 <div className=" w-96">
-                  
-                <PreviewImage alt="blabla" urls={[`/public/1371527.png`]} />
-
+                  <PreviewImage alt="blabla" urls={[`/public/1371527.png`]} />
                 </div>
               </div>
               <div className="col-span-4">

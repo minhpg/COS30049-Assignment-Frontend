@@ -4,8 +4,6 @@ import {
   CardHeader,
   Spinner,
   Tooltip,
-} from "@nextui-org/react";
-import {
   Table,
   TableHeader,
   TableBody,
@@ -14,14 +12,13 @@ import {
   TableCell,
   Pagination,
 } from "@nextui-org/react";
-
 import { useAsyncList } from "@react-stately/data";
-
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import { getLatestTransactions } from "../../../../api/models/Transactions";
 import { truncateAddress } from "../../../../utils";
 
-import { Link } from "react-router-dom";
 
 const CardTable = () => {
   const [isLoading, setIsLoading] = useState(true);

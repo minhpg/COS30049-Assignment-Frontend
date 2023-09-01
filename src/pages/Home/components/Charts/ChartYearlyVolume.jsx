@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 import { useState, useEffect } from "react";
-import { Card, CardBody, CardHeader } from "@nextui-org/react";
+
 import { getYearlyVolume } from "../../../../api/models/Statistics";
 
 const OPTIONS = {
@@ -71,8 +71,6 @@ const OPTIONS = {
 
 const ChartYearlyVolume = () => {
   const [state, setState] = useState([]);
-  // const [options, setOptions] = useState(OPTIONS);
-
   useEffect(() => {
     const dataFetch = async () => {
       const response = await getYearlyVolume();

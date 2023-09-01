@@ -4,8 +4,6 @@ import {
   CardHeader,
   Spinner,
   Tooltip,
-} from "@nextui-org/react";
-import {
   Table,
   TableHeader,
   TableBody,
@@ -13,12 +11,10 @@ import {
   TableRow,
   TableCell,
   Pagination,
-  useDisclosure,
 } from "@nextui-org/react";
-
 import { useAsyncList } from "@react-stately/data";
-
 import { useState } from "react";
+
 import { getTopNFTs } from "../../../../api/models/NFTs";
 import { TooltipPreviewImage } from "../../../../components/PreviewImage";
 
@@ -48,7 +44,6 @@ const CardNFT = () => {
     async load({ signal }) {
       let res = await getTopNFTs(20, { signal });
       setIsLoading(false);
-      console.log(res);
       return {
         items: res,
       };
@@ -141,15 +136,6 @@ const CardNFT = () => {
       </Card>
     </>
   );
-};
-
-const roundDollar = (num) => {
-  if (!num) return 0.0;
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-  return formatter.format(num);
 };
 
 export default CardNFT;
