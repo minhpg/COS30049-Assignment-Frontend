@@ -66,9 +66,6 @@ const UserDropdown = () => {
         </DropdownSection>
 
         <DropdownSection aria-label="Preferences" showDivider>
-          <DropdownItem key="quick_search" shortcut="⌘K">
-            Quick search
-          </DropdownItem>
           <DropdownItem
             isReadOnly
             key="theme"
@@ -78,7 +75,9 @@ const UserDropdown = () => {
                 isSelected ? enable() : disable()
               }} 
               defaultSelected={isDarkMode}
-              color="default" size="sm" className="z-10 w-16 py-0.5"></Switch>
+              color="default" 
+              size="xs" 
+              className="z-10 w-16 -mr-3"></Switch>
             }
           >
             Dark mode
