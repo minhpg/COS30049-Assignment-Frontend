@@ -61,27 +61,20 @@ const CardAddressInformation = () => {
   const { address } = useGraphContext();
   const { address: currentAddress } = useParams();
   return (
-    <Card
-      className="h-full lg:h-96"
-      shadow="none"
-    >
-      <CardHeader
-        className={`px-7 pt-6 -mb-2 text-xl justify-between block`}
-      >
+    <Card className="h-full lg:h-96" shadow="none">
+      <CardHeader className={`px-7 pt-6 -mb-2 text-xl justify-between block`}>
         <h2 className="font-light">Address</h2>
-        <p className="font-bold break-all">
-          {address}{" "}
+        <p className="font-bold break-all">{address} </p>
           <Link
             to={`/address/${address}`}
-            className={`hover:underline text-primary text-sm font-light ${ address == currentAddress ? "hidden" :""}`}
+            className={`hover:underline text-primary text-sm font-light ${
+              address == currentAddress ? "hidden" : ""
+            }`}
           >
             View details
           </Link>
-        </p>
       </CardHeader>
-      <CardBody
-        className={`px-4 py-0`}
-      >
+      <CardBody className={`px-4 py-0`}>
         <Table
           hideHeader
           aria-label="Example table with dynamic content"

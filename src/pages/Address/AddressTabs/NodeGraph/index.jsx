@@ -1,5 +1,5 @@
-import { Card } from "@nextui-org/react";
-import SplitPane from "react-split-pane";
+// import { Card } from "@nextui-org/react";
+// import SplitPane from "react-split-pane";
 
 import CardAddressInformation from "./CardAddressInformation";
 import Graph from "./Graph";
@@ -19,7 +19,7 @@ const NodeGraph = () => {
 const NodeGraphContent = () => {
   return (
     <>
-      <Card className="hidden lg:block">
+      {/* <Card className="hidden lg:block">
         <SplitPane
           split="vertical"
           minSize={-100}
@@ -31,8 +31,8 @@ const NodeGraphContent = () => {
           <CardAddressInformation />
           <Graph />
         </SplitPane>
-      </Card>
-      <div className="grid grid-cols-12 gap-2 lg:hidden">
+      </Card> */}
+      <div className="grid grid-cols-12 gap-2">
         <div className={`col-span-12 lg:col-span-4`}>
           <CardAddressInformation />
         </div>
