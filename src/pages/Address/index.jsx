@@ -38,7 +38,7 @@ const Address = () => {
               removeWrapper
               alt="Card background"
               className="z-0 w-full h-full object-cover"
-              src="/public/card-example-2.jpeg"
+              src="/card-example-2.jpeg"
             />
           </Card>
         </div>

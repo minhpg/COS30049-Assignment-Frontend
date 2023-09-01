@@ -23,7 +23,7 @@ const UserDropdown = () => {
       }}
     >
       <DropdownTrigger>
-        <Avatar isBordered color="default" src="/public/ban.jpeg" />
+        <Avatar isBordered color="default" src="/ban.jpeg" />
       </DropdownTrigger>
       <DropdownMenu
         disabledKeys={["profile"]}
@@ -58,7 +58,7 @@ const UserDropdown = () => {
               }}
               avatarProps={{
                 size: "sm",
-                src: "/public/ban.jpeg",
+                src: "/ban.jpeg",
               }}
             />
           </DropdownItem>
