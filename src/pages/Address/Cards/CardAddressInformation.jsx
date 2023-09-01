@@ -1,7 +1,7 @@
 import {
   Card,
-  CardBody,
   CardHeader,
+  CardBody,
   Table,
   TableHeader,
   TableBody,
@@ -57,6 +57,9 @@ const columns = [
 const CardAddressInformation = () => {
   return (
     <Card className="w-full">
+      <CardHeader className="px-7 pt-5 -mb-2">
+        <h2 className="text-xl font-bold">Analytics</h2>
+      </CardHeader>
       <CardBody className="px-4 py-0">
         <Table
           hideHeader

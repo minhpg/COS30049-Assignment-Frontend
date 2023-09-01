@@ -1,16 +1,22 @@
-import { Card, CardHeader, Image } from "@nextui-org/react";
 import { useParams } from "react-router-dom";
 import { useDocumentTitle } from "usehooks-ts";
+import { useRef } from "react";
 
 import CardMoreInfo from "./Cards/CardMoreInfo";
 import CardOverview from "./Cards/CardOverview";
 import CardUserNFTs from "./Cards/CardUserNFTs";
 import AddressTabs from "./AddressTabs";
-
+import CardAddressInformation from "./Cards/CardAddressInformation";
 
 const Address = () => {
   const { address } = useParams();
   useDocumentTitle("Address " + address);
+
+  const scrollRef = useRef(null);
+  const executeScroll = () => {
+    console.log("scrolled");
+    scrollRef.current.scrollIntoView({ block: "end", behavior: "smooth" });
+  };
 
   return (
     <div className="container mx-auto">
@@ -19,33 +25,18 @@ const Address = () => {
           <h1 className="text-3xl font-black break-words">Address {address}</h1>
         </div>
         <div className="col-span-12 md:col-span-6 lg:col-span-4">
-          <CardOverview />
+          <CardOverview handleScroll={executeScroll} />
         </div>
         <div className="col-span-12 md:col-span-6 lg:col-span-4">
           <CardMoreInfo />
         </div>
         <div className="col-span-12 lg:col-span-4">
-          <Card className="col-span-12 sm:col-span-4 md:h-full h-96">
-            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-              <p className="text-tiny text-white/60 uppercase font-bold">
-                Ads placement
-              </p>
-              <h4 className="text-white font-medium text-large">
-                Creates beauty like a beast
-              </h4>
-            </CardHeader>
-            <Image
-              removeWrapper
-              alt="Card background"
-              className="z-0 w-full h-full object-cover"
-              src="/card-example-2.jpeg"
-            />
-          </Card>
+          <CardAddressInformation />
         </div>
         <div className="col-span-12">
           <CardUserNFTs />
         </div>
-        <div className="col-span-12">
+        <div className="col-span-12" ref={scrollRef}>
           <AddressTabs />
         </div>
       </div>

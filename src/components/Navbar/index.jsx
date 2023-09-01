@@ -40,13 +40,13 @@ export default () => {
           <NavbarBrand>
             <Logo />
           </NavbarBrand>
-          {menuItems.slice(0, 4).map((item, index) => (
+          {/* {menuItems.slice(0, 4).map((item, index) => (
             <NavbarItem key={`${item}-${index}`}>
               <Link className="w-full hover:underline" color={"foreground"}>
                 {item}
               </Link>
             </NavbarItem>
-          ))}
+          ))} */}
         </NavbarContent>
 
         <NavbarContent justify="end">
@@ -58,7 +58,7 @@ export default () => {
         <NavbarMenu>
           {menuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link className="w-full" color="foreground" href="#" size="lg">
+              <Link className="w-full" color="foreground" size="lg">
                 {item}
               </Link>
             </NavbarMenuItem>

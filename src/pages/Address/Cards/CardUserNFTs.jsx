@@ -26,7 +26,7 @@ const CardUserNFTs = () => {
           key={index}
           isPressable
           isFooterBlurred
-          className="border-none"
+          className="border-none hover:-translate-y-5 hover:z-20"
         >
           <Img
             src={item.image_urls}
