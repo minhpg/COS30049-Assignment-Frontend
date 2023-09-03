@@ -7,7 +7,6 @@ import { GraphContextProvider } from "./GraphContext";
 
 import "./style.css";
 
-
 const NodeGraph = () => {
   return (
     <GraphContextProvider>
@@ -19,6 +18,10 @@ const NodeGraph = () => {
 const NodeGraphContent = () => {
   return (
     <>
+      {/* 
+      For future implementation:
+      Split pame component to display node data and directed graph
+     */}
       {/* <Card className="hidden lg:block">
         <SplitPane
           split="vertical"

@@ -1,5 +1,6 @@
 import SearchBar from "./SearchBar";
 
+// Hero component implemented using TailwindCSS's Hero example
 const Hero = () => {
   return (
     <div className="relative isolate px-6 pt-14 lg:px-8">

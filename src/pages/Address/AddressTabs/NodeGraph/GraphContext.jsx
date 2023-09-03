@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+
+// Graph Context to allow changing addresses on clickNode events
 const GraphContext = createContext();
 
 const GraphContextProvider = ({ children }) => {
