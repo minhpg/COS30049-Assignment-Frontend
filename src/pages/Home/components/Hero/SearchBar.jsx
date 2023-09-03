@@ -59,8 +59,8 @@ const SearchBar = () => {
                         onOpen();
                       }}
                     >
-                      <Link to="/address/0xafe7e3264efca320af481af3408d6f348878ec88">
-                        0xafe7e3264efca320af481af3408d6f348878ec88
+                      <Link to="/address/0x4fabda075e15e9245ed7cfb5db398b4683bfcf54">
+                      0x4fabda075e15e9245ed7cfb5db398b4683bfcf54
                       </Link>
                     </ListboxItem>
                   );

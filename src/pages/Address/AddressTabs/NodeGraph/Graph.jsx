@@ -71,8 +71,9 @@ const MyGraph = () => {
 
   useEffect(() => {
     const added_address = [];
+    const added_edges = []
     if (transactions) {
-      for (const { buyer_address, seller_address, hash } of transactions) {
+      for (const { buyer_address, seller_address, transaction_hash } of transactions) {
         if (!added_address.includes(buyer_address)) {
           added_address.push(buyer_address);
           graph.addNode(buyer_address, {
@@ -93,12 +94,16 @@ const MyGraph = () => {
             color: randomColor(),
           });
         }
-        const unique_id = uniqueId("rel_");
-        graph.addEdgeWithKey(unique_id, buyer_address, seller_address, {
-          label: hash,
-          type: "arrow",
-        });
+        if(!added_edges.includes(transaction_hash))
+          {
+            graph.addEdgeWithKey(transaction_hash, buyer_address, seller_address, {
+              label: transaction_hash,
+              type: "arrow",
+            });
+            added_edges.push(transaction_hash)
+          }
       }
+      setSelectedNode(graphContext.address)
     }
 
     loadGraph(graph);
@@ -110,6 +115,7 @@ const MyGraph = () => {
         leaveNode: () => setHoveredNode(null),
         clickNode: (event) => {
           console.log("doubleClickNode", event.node);
+          setSelectedNode(event.node)
           graphContext.setAddress(event.node);
           event.preventSigmaDefault();
         },
@@ -119,6 +125,7 @@ const MyGraph = () => {
   }, [assign, loadGraph, transactions, registerEvents, graphContext]);
 
   const [hoveredNode, setHoveredNode] = useState(null);
+  const [selectedNode, setSelectedNode] = useState(null)
   const setSettings = useSetSettings();
 
   useEffect(() => {
@@ -128,19 +135,16 @@ const MyGraph = () => {
 
         const newData = { ...data, highlighted: data.highlighted || false };
 
-        if (node == graphContext.address) {
-          newData.size = 20;
-          newData.highlighted = true;
-        }
-
-        if (hoveredNode) {
+        if (selectedNode) {
           if (
-            node === hoveredNode ||
-            graph.neighbors(hoveredNode).includes(node)
+            node === selectedNode ||
+            graph.neighbors(selectedNode).includes(node)
           ) {
-            newData.highlighted = true;
+            // newData.highlighted = true;
+            // newData.size = 15;
             newData.label = node;
-            newData.size = 15;
+            newData.size = 20;
+            newData.highlighted = true;
           } else {
             newData.color = "#E2E2E2";
             newData.highlighted = false;
@@ -152,13 +156,13 @@ const MyGraph = () => {
         const graph = sigma.getGraph();
         const newData = { ...data, hidden: false };
 
-        if (hoveredNode && !graph.extremities(edge).includes(hoveredNode)) {
+        if (selectedNode && !graph.extremities(edge).includes(selectedNode)) {
           newData.hidden = true;
         }
         return newData;
       },
     });
-  }, [hoveredNode, setSettings, sigma, graphContext]);
+  }, [selectedNode, setSettings, sigma, graphContext]);
 
   return null;
 };

@@ -1,7 +1,8 @@
 import { makeRequest } from "../api";
 import { mergeResult } from "../utils";
 import latestTransactionResponse from "../data/latest-transactions.json";
-import graphTransactionResponse from '../data/graph-transactions.json'
+import graphTransactionResponse from "../data/graph-transactions.json";
+
 const getLatestTransactions = async (limit) => {
   const query_all_transactions = `
     MATCH (t:Transaction),
@@ -53,11 +54,10 @@ const getAllTransactions = async (limit) => {
   (t)<-[:BOUGHT]-(buyer:Trader)
   WHERE t.Market = "OpenSea"
   RETURN 
-  DISTINCT
+    t.Transaction_hash as transaction_hash,
+    t.Price_Crypto as price,
    buyer.address AS buyer_address, 
-   buyer.username AS buyer_username, 
-   seller.address AS seller_address, 
-   seller.username AS seller_username
+   seller.address AS seller_address 
    ORDER BY rand()
    LIMIT $limit    `;
 
@@ -72,8 +72,8 @@ const getAllTransactions = async (limit) => {
     ],
   };
 
-//   const { errors, results } = await makeRequest(body);
-  const { errors, results } = graphTransactionResponse
+  // const { errors, results } = await makeRequest(body);
+  const { errors, results } = graphTransactionResponse;
   const results_parsed = [];
   for (const result of results) {
     const first_result = mergeResult(result);
