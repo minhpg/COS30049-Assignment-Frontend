@@ -1,3 +1,4 @@
+// API results from Neo4J returns by row, thus we need to merge column keys to each row value
 const mergeResult = (result) => {
     const { columns, data } = result
     const array = []
@@ -10,8 +11,8 @@ const mergeResult = (result) => {
     }
 
     return array
-
 }
+
 export {
     mergeResult
 }

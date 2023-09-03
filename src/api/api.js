@@ -1,3 +1,7 @@
+/* 
+Function to handle API requests to Neo4J HTTP endpoint
+Also handles authentication
+*/
 const makeRequest = async (body, fetch_options) => {
     const url = 'http://localhost:7474/db/nft/tx/commit'
 
@@ -15,7 +19,6 @@ const makeRequest = async (body, fetch_options) => {
 
     const response = await fetch(request, fetch_options)
     const json_response = await response.json()
-    console.log(json_response)
     return json_response
 }
 

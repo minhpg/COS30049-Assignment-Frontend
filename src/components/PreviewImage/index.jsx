@@ -10,7 +10,7 @@ const Loader = () => {
     </div>
   );
 };
-
+/* Utilizing react-image library to try to load images from multiple links for redundancy */
 const PreviewImage = ({ urls, alt }) => {
   const [flip, setFlip] = useState(false);
   return (

@@ -1,16 +1,16 @@
+// Imports
 import ReactDOM from "react-dom/client";
 import React, { useEffect } from "react";
 import { NextUIProvider } from "@nextui-org/react";
-
 import {
   createBrowserRouter,
   RouterProvider,
   Routes,
   Route,
 } from "react-router-dom";
-
 import { useDarkMode } from "usehooks-ts";
 
+// Import global css
 import "./index.css";
 
 // Import pages
@@ -22,6 +22,7 @@ import Transaction from "./pages/Transaction";
 
 import ScrollToTop from "./utils/ScrollToTop";
 
+// Seperated Root component for handling dark mode toggle
 const Root = () => {
   const { isDarkMode } = useDarkMode();
   useEffect(() => {
@@ -46,6 +47,8 @@ const Root = () => {
     </NextUIProvider>
   );
 };
+
+// react-router-dom to handle client-side navigation
 
 const router = createBrowserRouter([{ path: "*", Component: Root }]);
 

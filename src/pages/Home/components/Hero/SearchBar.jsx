@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 const SearchBar = () => {
   const [search, setSearch] = useState("");
 
+  // searchFocus to close search result box on focus loss
   const [searchFocus, setSearchFocus] = useState(false);
 
   return (
@@ -47,8 +48,14 @@ const SearchBar = () => {
             search.length > 0 && searchFocus ? "h-auto max-h-40" : "h-0"
           }`}
         >
+          {/* Showing search results
+          Search result box is hidden when search query length = 0
+          */}
           <CardBody className="p-1">
             <Listbox aria-label="Results">
+              {/* For now, list of mock search results are rendered based on search query length
+              Returning same links for all results
+               */}
               {Array(search.length)
                 .fill()
                 .map((index) => {
@@ -60,7 +67,7 @@ const SearchBar = () => {
                       }}
                     >
                       <Link to="/address/0x4fabda075e15e9245ed7cfb5db398b4683bfcf54">
-                      0x4fabda075e15e9245ed7cfb5db398b4683bfcf54
+                        0x4fabda075e15e9245ed7cfb5db398b4683bfcf54
                       </Link>
                     </ListboxItem>
                   );

@@ -1,8 +1,12 @@
 import { makeRequest } from "../api";
 import { mergeResult } from "../utils";
+
+// Importing JSON data for the purpose of portability
 import latestTransactionResponse from "../data/latest-transactions.json";
 import graphTransactionResponse from "../data/graph-transactions.json";
 
+
+// Fetching latest transactions 
 const getLatestTransactions = async (limit) => {
   const query_all_transactions = `
     MATCH (t:Transaction),
@@ -47,6 +51,7 @@ const getLatestTransactions = async (limit) => {
   return results_parsed[0];
 };
 
+// Fetching transactions for visualizing graph 
 const getAllTransactions = async (limit) => {
   const query_all_transactions = `
   MATCH (t:Transaction),
@@ -83,6 +88,7 @@ const getAllTransactions = async (limit) => {
   return results_parsed[0];
 };
 
+// Fetch transaction by transaction ID
 const getTransactionById = async (id) => {
   const query = `
     MATCH (t:Transaction),

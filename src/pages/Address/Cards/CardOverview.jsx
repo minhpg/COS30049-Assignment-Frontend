@@ -19,12 +19,23 @@ const CardOverview = ({ handleScroll }) => {
           <a
             className="text-primary hover:underline mt-5 text-sm"
             onClick={() => {
-              console.log("clicked");
               handleScroll();
             }}
           >
             View address transactions
           </a>
+          <p className="text-xs font-light italic text-foreground/50">
+            Click on{" "}
+            <span
+              onClick={() => {
+                handleScroll();
+              }}
+              className="text-primary hover:underline"
+            >
+              view address transactions
+            </span>{" "}
+            to scroll to Directed Graph
+          </p>
         </div>
       </CardBody>
     </Card>

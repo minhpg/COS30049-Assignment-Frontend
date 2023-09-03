@@ -1,6 +1,10 @@
 import { makeRequest } from "../api";
 import { mergeResult } from "../utils";
+
+// Importing JSON data for the purpose of portability
 import getTopNFTsResponse from '../data/nft-tops.json'
+
+// Fetch NFTs associated with the most transactions
 const getTopNFTs = async (limit) => {
   const query_all_transactions = `
   MATCH

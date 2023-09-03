@@ -12,6 +12,7 @@ import {
 import { useDarkMode } from 'usehooks-ts'
 
 const UserDropdown = () => {
+  // useDarkMode hook to handle dark mode toggling
   const { isDarkMode, toggle, enable, disable } = useDarkMode()  
   return (
     <Dropdown

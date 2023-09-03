@@ -12,6 +12,8 @@ const Address = () => {
   const { address } = useParams();
   useDocumentTitle("Address " + address);
 
+  // scrollRef to allow user to click link 
+  // -> scroll to directed graph component
   const scrollRef = useRef(null);
   const executeScroll = () => {
     console.log("scrolled");

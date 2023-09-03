@@ -6,17 +6,20 @@ import { PreviewImage } from "../../components/PreviewImage";
 
 const Transaction = () => {
   const { transaction } = useParams();
-  useDocumentTitle("Transaction "+transaction)
-  
+  useDocumentTitle("Transaction " + transaction);
+
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 p-5 gap-5">
         <div className="col-span-12">
+          {/* Page title start */}
           <h1 className="text-3xl font-black break-words">
             Transaction Details
           </h1>
+          {/* Paga title end */}
         </div>
         <div className="col-span-12">
+          {/* Details component start */}
           <Card className="h-full">
             <CardBody className="gap-4 grid grid-cols-8 md:grid-cols-12 text-sm">
               <div className="col-span-4">
@@ -83,7 +86,7 @@ const Transaction = () => {
                   0xC58EF7ba444c41669cdf4d9191E1095feBad0b9D
                 </Link>
               </div>
-              
+
               <div className="col-span-8 md:col-span-12">
                 <Divider />
               </div>
@@ -106,7 +109,7 @@ const Transaction = () => {
                   <span className="text-xs">($12,231)</span>
                 </p>
               </div>
-              
+
               <div className="col-span-4">
                 <h2 className="font-bold">Gas Price</h2>
               </div>
@@ -163,6 +166,7 @@ const Transaction = () => {
               </div>
             </CardBody>
           </Card>
+          {/* Details component end */}
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { makeRequest } from "../api"
 import { mergeResult } from "../utils"
 
+// Fetch an address's information and analytics
+
 const getSingleTrader = async (address) => {
     return await getSingleTraderAnalytics(address)
 }

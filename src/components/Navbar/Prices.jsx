@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 
+/* Marquee to display running list of current crypto prices */
 export default () => {
-  const elements = [];
   return (
     <div className="z-40 items-center sticky backdrop-blur-lg backdrop-saturate-150 bg-background/70 h-8 text-xs flex gap-4 overflow-hidden w-screen">
       <Marquee>

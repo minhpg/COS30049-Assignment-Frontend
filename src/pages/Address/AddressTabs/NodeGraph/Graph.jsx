@@ -16,15 +16,18 @@ import {
   LayoutForceAtlas2Control,
   useWorkerLayoutForceAtlas2,
 } from "@react-sigma/layout-forceatlas2";
-import { uniqueId, sample } from "lodash";
+import { sample } from "lodash";
 import { Card, CardBody } from "@nextui-org/card";
 
 import { GraphContext } from "./GraphContext";
 import { getAllTransactions } from "../../../../api/models/Transactions";
 import { truncateAddress } from "../../../../utils";
 
+/* 
+Generates random color from pre-assigned palletes used for graph nodes
+Palette: https://colorpalettes.io/bohemian-color-palette/
+*/
 const randomColor = () => {
-  // Palette: https://colorpalettes.io/bohemian-color-palette/
   const palette = [
     "#3F2021",
     "#B04A5A",
@@ -36,6 +39,11 @@ const randomColor = () => {
   return sample(palette);
 };
 
+/* 
+Directed graph will be implemented using react-sigma library
+*/
+
+// Sigma's FA2 layout to assign nodes into clusters
 const FA2 = () => {
   const { start, kill, isRunning } = useWorkerLayoutForceAtlas2();
 
@@ -49,17 +57,26 @@ const FA2 = () => {
   return null;
 };
 
-const MyGraph = () => {
+// Creating graph instance
+const CircularGraph = () => {
+  // Nodes will be assigned in a circular layout
   const { assign } = useLayoutCircular();
+
   const [transactions, setTransactions] = useState(null);
 
+  /* 
+  Using Graph Context to share address between address information component and graph,
+  which allows us to click nodes to change the address
+  */
   const graphContext = useContext(GraphContext);
 
+  // Using multi-directed graph to model multiple transaction edges between two addresses
   const graph = new MultiDirectedGraph();
   const loadGraph = useLoadGraph();
   const registerEvents = useRegisterEvents();
   const sigma = useSigma();
 
+  // Initial data fetching
   useEffect(() => {
     const dataFetch = async () => {
       const limit = 1000;
@@ -69,6 +86,7 @@ const MyGraph = () => {
     dataFetch();
   }, []);
 
+  // Visualizing nodes and edges
   useEffect(() => {
     const added_address = [];
     const added_edges = []
@@ -103,12 +121,14 @@ const MyGraph = () => {
             added_edges.push(transaction_hash)
           }
       }
+      // Set selected node to page's current address
       setSelectedNode(graphContext.address)
     }
 
     loadGraph(graph);
     assign();
 
+    // Registering node click/hover events
     registerEvents(
       {
         enterNode: (event) => setHoveredNode(event.node),
@@ -128,6 +148,7 @@ const MyGraph = () => {
   const [selectedNode, setSelectedNode] = useState(null)
   const setSettings = useSetSettings();
 
+  // Highlighting selected nodes and edges
   useEffect(() => {
     setSettings({
       nodeReducer: (node, data) => {
@@ -140,8 +161,6 @@ const MyGraph = () => {
             node === selectedNode ||
             graph.neighbors(selectedNode).includes(node)
           ) {
-            // newData.highlighted = true;
-            // newData.size = 15;
             newData.label = node;
             newData.size = 20;
             newData.highlighted = true;
@@ -180,8 +199,11 @@ const Graph = () => {
             defaultEdgeType: "arrow",
           }}
         >
-          <MyGraph />
+          {/* Main Graph */}
+          <CircularGraph />
+          {/* Sigma's FA2 clustered layout */}
           <FA2 />
+          {/* Graph controls component */}
           <ControlsContainer position={"bottom-right"}>
             <ZoomControl />
             <FullScreenControl />
